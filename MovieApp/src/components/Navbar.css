@@ -1,0 +1,60 @@
+.navbar {
+    display: flex;
+    background: linear-gradient(to right,#999999a1, #000000b7);
+    backdrop-filter: blur(10px);
+    height: 80px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 50px;
+    position: fixed;
+    width: 92.5%;
+}
+
+.navbar a {
+    color: #fff;
+    font-size: 30px;
+    background-color: transparent;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.navbar a:hover {
+    color: #000;
+}
+
+.navbar button {
+    padding: 7px 10px;
+    border-radius: 100px;
+    border: none;
+    color: #fff;
+    background-color: #4d4c4c;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.navbar button:hover {
+    background-color: #000;
+}
+
+.navbar input {
+    padding: 7px 10px;
+    border-radius: 15px;
+    border: none;
+    background-color: #4d4c4c;
+    margin-right: 5px;
+    color: aliceblue;
+}
+
+.navbar div, svg, form {
+    background-color: transparent;
+}
+
+.navbar a svg {
+    padding-right: 10px;
+}
+
+.navbar form {
+    margin-right: 10px;
+}

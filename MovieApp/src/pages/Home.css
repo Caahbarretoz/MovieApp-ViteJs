@@ -1,0 +1,30 @@
+.home_container {
+    padding-top: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 40px; 
+    color: aliceblue;
+}
+
+.home_container h2 {
+    margin: 15px 0px;
+}
+
+.movies_container {
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px 20px;
+    margin: 0px 20px;
+    width: 100%;
+}
+
+
+.search_title {
+    padding: 15px 0px;
+    margin-right: auto;
+    position: relative;
+    right: 90px;
+}

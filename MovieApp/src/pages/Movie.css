@@ -1,0 +1,33 @@
+.movie_container {
+    margin: 0 auto;
+    padding-top: 100px;
+    width: 50%;
+    color: aliceblue;
+}
+
+.container {
+    height: 100%;
+}
+
+.movie_card {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.movie_card p {
+    margin-top: 20px;
+}
+
+
+.movie_card h3, p {
+    font-size: 17px;
+    line-height: 25px;
+    width: 90%;
+    padding: 5px 30px;
+    display: flex;
+    align-items: center;
+}
+
+.movie_card h3 svg {
+    padding-right: 5px;
+}
