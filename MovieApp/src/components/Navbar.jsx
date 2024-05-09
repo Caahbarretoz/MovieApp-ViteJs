@@ -1,5 +1,5 @@
 import { FaSearch } from "react-icons/fa";
-import "./Navbar.css";
+import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import { BiCameraMovie } from "react-icons/bi";
 import { useState } from "react";
@@ -20,24 +20,24 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar">
-      <Link to="/">
-        <BiCameraMovie />
-        Movie App
-      </Link>
-      <div>
+    <div className={styles.navbar}>
+      <div className={styles.search_section}>
         <form onSubmit={handleSubmit}>
+          <button type="submit">
+            <FaSearch />{" "}
+          </button>
           <input
             type="text"
             placeholder="Procure por um filme..."
             onChange={(e) => setSearch(e.target.value)}
             value={search}
           />
-          <button type="submit">
-            <FaSearch />{" "}
-          </button>
         </form>
       </div>
+      <Link to="/">
+        M<BiCameraMovie />
+        vieMax
+      </Link>
     </div>
   );
 };

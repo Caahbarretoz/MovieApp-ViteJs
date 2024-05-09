@@ -1,0 +1,46 @@
+.movie_section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  width: 96%; /* Largura total */
+  & h2 {
+      background-color: transparent;
+      color: #fff;
+      font-size: 20px;
+  }
+}
+
+.movies_container {  
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: nowrap; /* Mantém os itens em uma linha */
+  overflow-x: auto; /* Adiciona rolagem horizontal */
+  gap: 15px; /* Espaçamento entre os filmes */
+  width: 100%; /* Largura total */
+  background-color: transparent;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+  
+  .prevButton,
+  .nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+  }
+  
+  .prevButton {
+    left: 10px;
+  }
+  
+  .nextButton {
+    right: 10px;
+  }
+  

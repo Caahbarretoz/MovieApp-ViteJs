@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
-import "./Movie.css";
+import styles from "./Movie.module.css";
 import { PiTimer } from "react-icons/pi";
 import { FiActivity } from "react-icons/fi";
 import { RxCalendar } from "react-icons/rx";
@@ -25,9 +25,9 @@ const Movie = () => {
   }, []);
 
   return (
-    <div className="movie_container">
+    <div className={styles.movie_container}>
       {movie && (
-        <div className="movie_card">
+        <div className={styles.movie_card}>
           <MovieCard key={movie.id} movie={movie} onshow={false} />
           <p>{movie.overview}</p>
           <h3>
