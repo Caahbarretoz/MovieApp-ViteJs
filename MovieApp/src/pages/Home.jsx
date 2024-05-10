@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
+import SlideMenu from "../components/SlideMenu";
 import styles from "./Home.module.css";
 const moviesURL = import.meta.env.VITE_API;
 const seriesURL = import.meta.env.VITE_API_SERIES;
@@ -10,6 +11,10 @@ import { FaStar } from "react-icons/fa";
 const Home = () => {
   const [topMovies, setTopMovies] = useState([]);
   const [topSeries, setTopSeries] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [popularSeries, setPopularSeries] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [trendingSeries, setTrendingSeries] = useState([]);
 
   const [selectedMovie, setSelectedMovie] = useState("");
   const [whatSelected, setWhatSelected] = useState("");
@@ -17,6 +22,8 @@ const Home = () => {
   const [isSelected, setIsSelected] = useState(false);
   const [selectedMovieOverview, setSelectedMovieOverview] = useState("");
   const [selectedMovieTitle, setSelectedMovieTitle] = useState("");
+  const [selectedMovieAvarage, setSelectedMovieAvarage] = useState("");
+  const [selectedMovieRelease, setSelectedMovieRelease] = useState("");
 
   async function getTopRatedMovies(url) {
     const res = await fetch(url);
@@ -24,10 +31,34 @@ const Home = () => {
     setTopMovies(data.results);
   }
 
+  async function getPopularMovies(url) {
+    const res = await fetch(url);
+    const data = await res.json();
+    setPopularMovies(data.results);
+  }
+
+  async function getTrendingMovies(url) {
+    const res = await fetch(url);
+    const data = await res.json();
+    setTrendingMovies(data.results);
+  }
+
   async function getTopRatedSeries(url) {
     const res = await fetch(url);
     const data = await res.json();
     setTopSeries(data.results);
+  }
+
+  async function getPopularSeries(url) {
+    const res = await fetch(url);
+    const data = await res.json();
+    setPopularSeries(data.results);
+  }
+
+  async function getTrendingSeries(url) {
+    const res = await fetch(url);
+    const data = await res.json();
+    setTrendingSeries(data.results);
   }
 
   function handleClickMovie(movie) {
@@ -45,26 +76,50 @@ const Home = () => {
   useEffect(() => {
     const topRatedMoviesdUrl = `${moviesURL}top_rated?language=pt-BR&${apiKey}`;
     getTopRatedMovies(topRatedMoviesdUrl);
+
+    const popularMoviesUrl = `${moviesURL}popular?language=pt-BR&${apiKey}`;
+    getPopularMovies(popularMoviesUrl);
+
     const topRatedSeriesUrl = `${seriesURL}top_rated?language=pt-BR&${apiKey}`;
     getTopRatedSeries(topRatedSeriesUrl);
+
+    const popularSeriesUrl = `${seriesURL}popular?language=pt-BR&${apiKey}`;
+    getPopularSeries(popularSeriesUrl);
+
+    const trendingSeriesUrl = `https://api.themoviedb.org/3/trending/tv/day?language=pt-BR&${apiKey}`;
+    getTrendingSeries(trendingSeriesUrl);
+
+    const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?language=pt-BR&${apiKey}`;
+    getTrendingMovies(trendingMoviesUrl);
   }, []);
 
   useEffect(() => {
     // Verifica se há algum filme na lista topMovies
     if (topMovies.length > 0) {
-      setSelectedMovie(`${topMovies[0].backdrop_path}`);
-      setSelectedMovieTitle(`${topMovies[0].title}`);
+      setSelectedMovie(`${topSeries[0].backdrop_path}`);
+      setSelectedMovieTitle(`${topSeries[0].name}`);
+      setSelectedMovieAvarage(`${topSeries[0].vote_average.toFixed(1)}`);
+      setSelectedMovieRelease(`${topSeries[0].first_air_date.substring(0, 4)}`);
+      setSelectedMovieOverview(`${topSeries[0].overview}`);
     }
-  }, [topMovies]);
+  }, [topSeries]);
 
   return (
     <div className={styles.home_container}>
       <div className={styles.backdrop}>
         {isSelected == false ? (
-          <>
+          <div className={styles.movie_info}>
             <h1>{selectedMovieTitle}</h1>
+            <div className={styles.span_info}>
+              <span>
+                <FaStar />
+                {selectedMovieAvarage}
+              </span>
+              <span>{selectedMovieRelease}</span>
+            </div>
+            <p>{selectedMovieOverview}</p>
             <img src={`${movieBackdrop}${selectedMovie}`} alt="MovieImg" />
-          </>
+          </div>
         ) : whatSelected == "movie" ? (
           <div className={styles.movie_info}>
             <h1>{selectedMovie.title}</h1>
@@ -101,33 +156,47 @@ const Home = () => {
       </div>
 
       <div className={styles.content_container}>
-        <div className={styles.topseries_section}>
-          <h2>Melhores Series</h2>
-          <div className={styles.movies_container}>
-            {topSeries.length > 0 &&
-              topSeries.map((serie) => (
-                <MovieCard
-                  key={serie.id}
-                  serie={serie}
-                  handleClick={() => handleClickSerie(serie)}
-                />
-              ))}
-          </div>
-        </div>
+        <SlideMenu
+          type={"serie"}
+          movies={topSeries}
+          sectionTitle={"Melhores Series"}
+          handleClick={handleClickSerie}
+        />
 
-        <div className={styles.movie_section}>
-          <h2>Melhores Filmes</h2>
-          <div className={styles.movies_container}>
-            {topMovies.length > 0 &&
-              topMovies.map((movie) => (
-                <MovieCard
-                  key={movie.id}
-                  movie={movie}
-                  handleClick={() => handleClickMovie(movie)}
-                />
-              ))}
-          </div>
-        </div>
+        <SlideMenu
+          type={"serie"}
+          movies={popularSeries}
+          sectionTitle={"Series Populares"}
+          handleClick={handleClickSerie}
+        />
+
+        <SlideMenu
+          type={"serie"}
+          movies={trendingSeries}
+          sectionTitle={"Series em Alta"}
+          handleClick={handleClickSerie}
+        />
+
+        <SlideMenu
+          type={"movie"}
+          movies={topMovies}
+          sectionTitle={"Melhores Filmes"}
+          handleClick={handleClickMovie}
+        />
+
+        <SlideMenu
+          type={"movie"}
+          movies={popularMovies}
+          sectionTitle={"Filmes Populares"}
+          handleClick={handleClickMovie}
+        />
+
+        <SlideMenu
+          type={"movie"}
+          movies={trendingMovies}
+          sectionTitle={"Filmes em Alta"}
+          handleClick={handleClickMovie}
+        />
       </div>
     </div>
   );

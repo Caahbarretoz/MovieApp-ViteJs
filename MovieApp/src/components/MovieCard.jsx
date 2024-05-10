@@ -3,20 +3,20 @@ const MovieImg = import.meta.env.VITE_IMG;
 import { FaStar } from "react-icons/fa";
 import styles from "./MovieCard.module.css";
 
-const MovieCard = ({ handleClick, movie, serie, onshow = true }) => {
+const MovieCard = ({ handleClick, type, movie }) => {
   return (
-    <div className={styles.container} onClick={handleClick}>
+    <div className={styles.container} onClick={handleClick} tabIndex="0">
       <div className={styles.container_img}>
-        {movie && (
+        {type == "movie" && (
           <img src={`${MovieImg}${movie.poster_path}`} alt="MovieImg" />
         )}
-        {serie && (
-          <img src={`${MovieImg}${serie.poster_path}`} alt="MovieImg" />
+        {type == "serie" && (
+          <img src={`${MovieImg}${movie.poster_path}`} alt="MovieImg" />
         )}
       </div>
       <div className={styles.container_title}>
-        {movie && <h1>{movie.title}</h1>}
-        {serie && <h1>{serie.name}</h1>}
+        {type == "movie" && <h1>{movie.title}</h1>}
+        {type == "serie" && <h1>{movie.name}</h1>}
       </div>
     </div>
   );

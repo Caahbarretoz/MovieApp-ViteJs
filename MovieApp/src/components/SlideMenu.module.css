@@ -1,10 +1,10 @@
 .movie_section {
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   background-color: transparent;
   width: 96%; /* Largura total */
+  height: 400px;
   & h2 {
       background-color: transparent;
       color: #fff;
@@ -13,15 +13,24 @@
 }
 
 .movies_container {  
-  margin-top: 10px;
+  height: 312px;
+  position: relative;
+  perspective: 1000px; 
   display: flex;
+  align-items: center;
   flex-wrap: nowrap; /* Mantém os itens em uma linha */
   overflow-x: auto; /* Adiciona rolagem horizontal */
   gap: 15px; /* Espaçamento entre os filmes */
   width: 100%; /* Largura total */
   background-color: transparent;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+}
+
+.movies_container::-webkit-scrollbar {
+  width: 1px;
+}
+
+.movies_container::-webkit-scrollbar-thumb {
+  background-color: transparent;
 }
   
   .prevButton,

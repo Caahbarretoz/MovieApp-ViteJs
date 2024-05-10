@@ -1,8 +1,9 @@
-import React, { useState, useRef } from "react";
-import styles from "./SlideMenu.module.css"; // Importe o arquivo CSS Module para estilização
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // Importe os ícones de seta
+import React, { useRef } from "react";
+import styles from "./SlideMenu.module.css";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import MovieCard from "./MovieCard";
 
-const Carousel = ({ movies, sectionTitle, handleClick }) => {
+const SlideMenu = ({ movies, sectionTitle, handleClick, type }) => {
   const carouselRef = useRef(null);
 
   const scrollLeft = () => {
@@ -24,8 +25,11 @@ const Carousel = ({ movies, sectionTitle, handleClick }) => {
         {movies.map((movie) => (
           <MovieCard
             key={movie.id}
+            type={type}
             movie={movie}
-            handleClick={() => handleClick}
+            handleClick={() => {
+              handleClick(movie);
+            }}
           />
         ))}
       </div>
@@ -40,4 +44,4 @@ const Carousel = ({ movies, sectionTitle, handleClick }) => {
   );
 };
 
-export default Carousel;
+export default SlideMenu;

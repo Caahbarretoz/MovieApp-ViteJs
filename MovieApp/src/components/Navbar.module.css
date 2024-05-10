@@ -57,6 +57,11 @@
     color: aliceblue;
 }
 
+.navbar input::placeholder {
+    font-size: 10px;
+    color: #353535; 
+}
+
 .navbar div, svg, form {
     background-color: transparent;
 }
