@@ -1,33 +1,70 @@
 .movie_container {
-    margin: 0 auto;
-    padding-top: 100px;
-    width: 50%;
+    width: 100vw;
+    height: 100vh;
     color: aliceblue;
 }
 
-.container {
-    height: 100%;
-}
-
-.movie_card {
+.backdrop_container {
+    position: relative;
     width: 100%;
-    margin-bottom: 40px;
+    height: 100%;
+    & .backdrop_image {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+    } 
+    & .movie_card {
+        position: absolute;
+        top: 20%;
+        display: flex;
+        justify-content: center;
+        & h1 {
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 40px;
+        }
+        & .movie_cover {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            & img {
+                width: 45%;
+                border-radius: 5px;
+                box-shadow: 0 10px 40px rgb(0, 0, 0);
+            }
+        }
+        & .movie_info {
+            width: 50%;
+            display: flex; 
+            flex-direction: column;
+            gap: 5%;
+            & .movie_overview {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                & p {
+                    width: 90%;
+                }
+            }
+            & h2, p {
+                display: flex;
+                align-items: center;
+            }
+            
+            & h2 svg {
+                padding-right: 5px;
+            }
+
+            & h2 span {
+                font-weight: normal;
+                font-size: 18px;
+                padding-left: 10px;
+            }
+        }
+    }
+    & p, .movie_card, .movie_info, .movie_cover, h1, .movie_overview, h2, span{
+        background-color: transparent;
+    }
 }
 
-.movie_card p {
-    margin-top: 20px;
-}
 
-
-.movie_card h3, p {
-    font-size: 17px;
-    line-height: 25px;
-    width: 90%;
-    padding: 5px 30px;
-    display: flex;
-    align-items: center;
-}
-
-.movie_card h3 svg {
-    padding-right: 5px;
-}

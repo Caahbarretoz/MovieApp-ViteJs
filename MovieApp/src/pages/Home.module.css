@@ -47,16 +47,18 @@
         top:10%
     }
     & p {  
-        color: #fff;
+        margin-left: 30px; 
+        color: #dbdbdb;
         font-size: 13px;       
-        top:20%;
-        width: 40%;  
+        top:21%;
+        width: 37%;  
         max-height: 200px; 
         text-overflow: ellipsis;   
-        overflow: hidden
+        overflow: hidden;
+        line-height: 25px;
     }
     & .span_info {
-        top:16%;
+        top:17%;
         color: #fff;
         margin-left: 30px; 
         width: 100px;
@@ -88,6 +90,10 @@
 .movie_info {
     position: relative;
     top: 2%;
+    & h1 {
+        text-transform: uppercase;
+        letter-spacing: 5px;
+    }
 }
 
 .content_container {

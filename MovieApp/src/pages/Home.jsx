@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import MovieCard from "../components/MovieCard";
 import SlideMenu from "../components/SlideMenu";
 import styles from "./Home.module.css";
 const moviesURL = import.meta.env.VITE_API;
@@ -159,21 +158,21 @@ const Home = () => {
         <SlideMenu
           type={"serie"}
           movies={topSeries}
-          sectionTitle={"Melhores Series"}
+          sectionTitle={"Melhores Séries"}
           handleClick={handleClickSerie}
         />
 
         <SlideMenu
           type={"serie"}
           movies={popularSeries}
-          sectionTitle={"Series Populares"}
+          sectionTitle={"Séries Populares"}
           handleClick={handleClickSerie}
         />
 
         <SlideMenu
           type={"serie"}
           movies={trendingSeries}
-          sectionTitle={"Series em Alta"}
+          sectionTitle={"Séries em Alta"}
           handleClick={handleClickSerie}
         />
 

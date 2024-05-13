@@ -5,6 +5,7 @@
   background-color: transparent;
   width: 96%; /* Largura total */
   height: 400px;
+  
   & h2 {
       background-color: transparent;
       color: #fff;
@@ -13,7 +14,7 @@
 }
 
 .movies_container {  
-  height: 312px;
+  height: 340px;
   position: relative;
   perspective: 1000px; 
   display: flex;
@@ -23,6 +24,7 @@
   gap: 15px; /* Espaçamento entre os filmes */
   width: 100%; /* Largura total */
   background-color: transparent;
+  overflow-y: hidden;
 }
 
 .movies_container::-webkit-scrollbar {
