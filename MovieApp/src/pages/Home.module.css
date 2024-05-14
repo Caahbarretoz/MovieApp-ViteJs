@@ -89,7 +89,6 @@
 
 .movie_info {
     position: relative;
-    top: 2%;
     & h1 {
         text-transform: uppercase;
         letter-spacing: 5px;
